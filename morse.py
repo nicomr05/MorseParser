@@ -11,7 +11,7 @@ class CodificationError(Exception):
     '''
     pass
 
-class WordNotFound(Exception):
+class SymbolNotFound(Exception):
     '''
     Description
     -----------
@@ -36,11 +36,11 @@ def morse_to_natural(msg:str|list) -> list:
         A list of the letters translated.
     '''
     translated_morse = []
-    for word in msg:
-        if word in MORSE_TO_NATURAL:
-            translated_morse.append(MORSE_TO_NATURAL[word])
+    for letter in msg:
+        if letter in MORSE_TO_NATURAL:
+            translated_morse.append(MORSE_TO_NATURAL[letter])
         else:
-            raise WordNotFound
+            raise SymbolNotFound
         
     return translated_morse
 
@@ -65,7 +65,7 @@ def natural_to_morse(msg:str|list) -> list:
         if symbol in NATURAL_TO_MORSE:
             translated_text.append(NATURAL_TO_MORSE[symbol])
         else:
-            raise WordNotFound
+            raise SymbolNotFound
         
     return translated_text
 
@@ -107,6 +107,7 @@ def main() -> None:
     
     for translation in result:
         print(translation, end=' ')
+    print(end='\n')
 
 if __name__ == '__main__':
     try:
@@ -115,5 +116,5 @@ if __name__ == '__main__':
     except CodificationError:
         print('\nERROR : You should indicate whether the message is in morse code or natural language in the command prompt (-m or -n).\n')
     
-    except WordNotFound:
+    except SymbolNotFound:
         print('\nERROR : Either one of the words you tried to translate was not found or the code-type speficier is incorrect.\n')
