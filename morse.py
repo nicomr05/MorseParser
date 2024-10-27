@@ -69,12 +69,12 @@ def natural_to_morse(msg:str|list) -> list:
         
     return translated_text
 
-def main() -> None:
+def command_manager() -> None:
     '''
     Description
     -----------
-     Main function that manages wheter the program needs to translate from morse
-     code to natural language or the other way around and possible misspellings.
+     Manages wheter the program needs to translate from morse code to
+     natural language or the other way around and possible misspellings.
 
     Returns
     -------
@@ -109,12 +109,26 @@ def main() -> None:
         print(translation, end=' ')
     print(end='\n')
 
-if __name__ == '__main__':
+
+def main() -> None:
+    '''
+    Description
+    -----------
+     Main function that runs the command manager and excepts possible misspellings.
+
+    Returns
+    -------
+     None
+    '''
     try:
-        main()
+        command_manager()
 
     except CodificationError:
         print('\nERROR : You should indicate whether the message is in morse code or natural language in the command prompt (-m or -n).\n')
     
     except SymbolNotFound:
         print('\nERROR : Either one of the words you tried to translate was not found or the code-type speficier is incorrect.\n')
+
+
+if __name__ == '__main__':
+    main()
